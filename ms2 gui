@@ -15,7 +15,7 @@ end
             end)
             main:CreateButton("Mirgar ms2 script", "Scripts", function()
                 do
-                    loadstring(game:HttpGet"https://raw.githubusercontent.com/Mirgarr/script-ms2/main/script"
+                    loadstring(game:HttpGet'https://raw.githubusercontent.com/Mirgarr/script-ms2/main/script')()", true))()"
                             end
                         end)
                     
