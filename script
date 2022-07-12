@@ -1,334 +1,314 @@
---Mirgar ms2 gui script--
-
-local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/jakepscripts/moonlib/main/moonlibv1.lua'))()
-local main = library:CreateWindow("Mirgar MS2 gui scripts", "#b36419", 9160626035)
-main:CreateTab("Scripts")
-main:CreateButton("Exodus", "Scripts", function()
-do
-    loadstring(game:HttpGet("https://system-exodus.com/scripts/MiningSimulator/MiningSimulator2.lua", true))()
-end
+local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))()
+local MainUI = UILibrary.Load("Mining simulator 2 script.")
+local FirstPage = MainUI.AddPage("Pets")
+local SecondPage = MainUI.AddPage("Teleport")
+local ThirdPage = MainUI.AddPage("Server")
+local zones = {"The Overworld", "Hidden Treasure","Frozen Depths","Gloomy Basin","Molten Core","The Underworld","Crystal Cavern","Cyber Sewers","Cosmic Abyss","Cyber Core","Glitched Chasm"}
+local Breakcontinuous = false
+local AutoRejoin = false
+local AutoRebirth = false
+local AutoBoosts = false
+getgenv().EquipBests = true
+getgenv().DeleteStone = true
+getgenv().UseBig1 = false
+getgenv().UseBig2 = false
+getgenv().UseRich1 = false
+getgenv().UseRich2 = false
+getgenv().Buyx1LuckyBoost = false
+getgenv().Buyx2LuckyBoosts = false
+getgenv().BuyEventSuperLuckyBoost = false
+getgenv().Buyx1SuperLuckyBoost = false
+getgenv().Buyx2SuperLuckyBoosts = false
+getgenv().BuyEventOmegaLuckyBoost = false
+getgenv().Buy1xOmegaLuckyBoost = false
+getgenv().Buy2xOmegaLuckyBoosts = false
+getgenv().Buy1xBigEarnBoost = false
+getgenv().Buy2xBigEarnBoosts = false
+getgenv().Buy1xSuperRichBoost = false
+getgenv().Buy2xSuperRichBoosts = false
+local FirstButton = FirstPage.AddButton("Simple Spy", function()
+    do
+        loadstring(game:HttpGet'https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua')()
+    end
+end)
+local FirstButton = FirstPage.AddButton("Equip bests", function()
+    do
+    game:GetService("ReplicatedStorage").Events.EquipBestPets:FireServer()
+    end
+end)
+local FirstDropdown = FirstPage.AddDropdown("Buy Boosts", {
+    "  Lucky",
+    "  Super Lucky",
+    " Omega Lucky",
+    "Big Earner",
+    "SuperRich"
+    },
+    function(Value)
     end)
-    main:CreateButton("Zeerox", "Scripts", function()
-        do
-            loadstring(game:HttpGet'https://raw.githubusercontent.com/RunDTM/miningsim2/main/rewrite.lua')()", true))()"
-        end
-            end)
-            main:CreateButton("Mirgar ms2 script", "Scripts", function()
-                do
-                    local UILibrary = loadstring(game:HttpGet("https://pastebin.com/raw/V1ca2q9s"))()
-                    local MainUI = UILibrary.Load("Mining simulator 2 script.")
-                    local FirstPage = MainUI.AddPage("Pets")
-                    local SecondPage = MainUI.AddPage("Teleport")
-                    local ThirdPage = MainUI.AddPage("Server")
-                    local zones = {"The Overworld", "Hidden Treasure","Frozen Depths","Gloomy Basin","Molten Core","The Underworld","Crystal Cavern","Cyber Sewers","Cosmic Abyss","Cyber Core","Glitched Chasm"}
-                    local Breakcontinuous = false
-                    local AutoRejoin = false
-                    local AutoRebirth = false
-                    local AutoBoosts = false
-                    getgenv().EquipBests = true
-                    getgenv().DeleteStone = true
-                    getgenv().UseBig1 = false
-                    getgenv().UseBig2 = false
-                    getgenv().UseRich1 = false
-                    getgenv().UseRich2 = false
-                    getgenv().Buyx1LuckyBoost = false
-                    getgenv().Buyx2LuckyBoosts = false
-                    getgenv().BuyEventSuperLuckyBoost = false
-                    getgenv().Buyx1SuperLuckyBoost = false
-                    getgenv().Buyx2SuperLuckyBoosts = false
-                    getgenv().BuyEventOmegaLuckyBoost = false
-                    getgenv().Buy1xOmegaLuckyBoost = false
-                    getgenv().Buy2xOmegaLuckyBoosts = false
-                    getgenv().Buy1xBigEarnBoost = false
-                    getgenv().Buy2xBigEarnBoosts = false
-                    getgenv().Buy1xSuperRichBoost = false
-                    getgenv().Buy2xSuperRichBoosts = false
-                    local FirstButton = FirstPage.AddButton("Simple Spy", function()
-                        do
-                            loadstring(game:HttpGet'https://raw.githubusercontent.com/exxtremestuffs/SimpleSpySource/master/SimpleSpy.lua')()
-                        end
-                    end)
-                    local FirstButton = FirstPage.AddButton("Equip bests", function()
-                        do
-                        game:GetService("ReplicatedStorage").Events.EquipBestPets:FireServer()
-                        end
-                    end)
-                    local FirstDropdown = FirstPage.AddDropdown("Buy Boosts", {
-                        "  Lucky",
-                        "  Super Lucky",
-                        " Omega Lucky",
-                        "Big Earner",
-                        "SuperRich"
-                        },
-                        function(Value)
-                        end)
-                        local FirstToggle = FirstPage.AddToggle("Auto buy all boosts", false, function(Value)
-                            print(Value)
-                            AutoBoosts = Value
-                            if AutoBoosts == false then print("Auto buy all boosts is inactive")
-                            else print("Auto buy all boosts is active") end
-                            while AutoBoosts == true do
-                                spawn(function()
-                                    while wait() do
-                                local args = {[1] = "Lucky",[2] = 1}
-                                game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
-                                    end
-                                    end)
-                                
-                                    spawn(function()
-                                    while wait() do
-                                local args = {[1] = "Lucky",[2] = 2}
-                                game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
-                                    end
-                                end)
-                    
-                                spawn(function()
-                                    while wait() do
-                                local args = {[1] = "boost1"}
-                                game:GetService("ReplicatedStorage").Events.BuyEventShopItem:FireServer(unpack(args))
-                                
-                                    end
-                                    end)
-                    
-                                    spawn(function()
-                                        while wait() do
-                                local args = {[1] = "Super Lucky",[2] = 1}
-                                game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
-                                end
-                                end)
-                    
-                                spawn(function()
-                                    while wait() do
-                                local args = {[1] = "Super Lucky",[2] = 2}
-                                game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
-                                end
-                                end)
-                    
-                                    spawn(function()
-                                        while wait() do 
-                                local args = {[1] = "boost2"}
-                                game:GetService("ReplicatedStorage").Events.BuyEventShopItem:FireServer(unpack(args))
-                                        end
-                                        end)
-                    
-                                        spawn(function()
-                                            while wait() do 
-                                local args = {[1] = "Omega Lucky",[2] = 1}
-                                game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
-                    
-                                            end
-                                            end)
-                    
-                                            spawn(function()
-                                                while wait() do
-                                local args = {[1] = "Omega Lucky",[2] = 2}
-                                game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
-                                end
-                                end)
-                    
-                                spawn(function()
-                                    while wait() do 
-                                        local args = {[1] = "Big Earner",[2] = 1}
-                                        game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
-                                end
-                                end)
-                    
-                                spawn(function()
-                                    while wait() do 
-                                local args = {[1] = "Big Earner",[2] = 2}
-                                game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
-                                end
-                                end)
-                    
-                                spawn(function()
-                                    while wait() do 
-                                local args = {[1] = "Super Rich",[2] = 1}
-                                game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
-                                end
-                                end)
-                    wait()
-                                spawn(function()
-                                    while wait() do 
-                                local args = {[1] = "Super Rich",[2] = 2}
-                                game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
-                                end
-                                end)
-                            end
-                        end)
-                    
-                    
-                    
-                        local FirstToggle = FirstPage.AddToggle("Auto use all coins multiplier boosts", false, function(Value)
-                                spawn(function()
-                                    while wait() do 
-                                local args = {[1] = "Big Earner",[2] = 3600}
-                                game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
-                                    end
-                                    end)
-                                
-                                    spawn(function()
-                                        while wait() do 
-                                    local args = {[1] = "Big Earner",[2] = 7200}
-                                    game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
-                                        end
-                                        end)
-                                    end)
-                                        spawn(function()
-                                            while wait() do 
-                                        local args = {[1] = "Super Rich",[2] = 3600}
-                                        game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
-                                            end
-                                            end)
-                    wait()
-                    
-                                            spawn(function()
-                                                while wait() do 
-                                            local args = {[1] = "Super Rich",[2] = 7200}
-                                            game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
-                                                end
-                                                end)
-                     local FirstToggle = FirstPage.AddToggle("Auto delete stone", false, function(Value)
-                        print(Value)
-                        Breakcontinuous = Value
-                        if Breakcontinuous == false then print("Auto delete blocks is inactive")
-                        else print("Auto delete blocks is active") end
-                        while Breakcontinuous == true do
-                             local args = {
-                                    [1] = {
-                                 [1] = "h_stone",[2] = "ice",[3] = "d_stone",[4] = "de_stone",[5] = "m_stone"
-                                    }
-                                }
-                                game:GetService("ReplicatedStorage").Events.MultiDeleteOres:FireServer(unpack(args))
-                                wait()
-                             end
-                          end)
-                    local FirstButton = SecondPage.AddButton("Unlock All", function()
-                        for key,value2 in pairs(zones) do
-                            local args = {
-                                    [1] = value2
-                                 }
-                            game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                            wait(0.5)
-                    
-                        end 
-                    end)
-                    local FirstButton = SecondPage.AddButton("Overworld", function()
-                        do
-                    local args = {
-                        [1] = "The Overworld"
-                    }
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    
-                    local SecondButton = SecondPage.AddButton("Cyber Galaxy", function()
-                        do
-                            local args = {[1] = "Cyber Galaxy"}
-                            game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local ThirdButton = SecondPage.AddButton("Summer Fair", function()
-                        do
-                    local args = {[1] = "Summer Fair"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FourthButton = SecondPage.AddButton("Hidden Treasure", function()
-                        do
-                    local args = {[1] = "Hidden Treasure"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FourthButton = SecondPage.AddButton("Frozen Depths", function()
-                        do
-                    local args = {[1] = "Frozen Depths"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FourthButton = SecondPage.AddButton("Gloomy Basin", function()
-                        do
-                    local args = {[1] = "Gloomy Basin"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FourthButton = SecondPage.AddButton("Molten Core", function()
-                        do
-                    local args = {[1] = "Molten Core"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FourthButton = SecondPage.AddButton("The Underworld", function()
-                        do
-                    local args = {[1] = "The Underworld"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FourthButton = SecondPage.AddButton("Crystal Cavern", function()
-                        do
-                    local args = {[1] = "Crystal Cavern"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FourthButton = SecondPage.AddButton("Cyber Sewers", function()
-                        do
-                    local args = {[1] = "Cyber Sewers"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FourthButton = SecondPage.AddButton("Cosmic Abyss", function()
-                        do
-                    local args = {[1] = "Cosmic Abyss"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FourthButton = SecondPage.AddButton("Cyber Core", function()
-                        do
-                    local args = {[1] = "Cyber Core"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FourthButton = SecondPage.AddButton("Glitched Chasm", function()
-                        do
-                    local args = {[1] = "Glitched Chasm"}
-                    game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
-                    end 
-                    end)
-                    local FirstButton = ThirdPage.AddButton("Server hop", function()
-                        do
-                            game:GetService("TeleportService"):Teleport(9551640993, game:GetService("Players").LocalPlayer)
-                        end
-                    end)
-                    local FirstToggle = ThirdPage.AddToggle("Auto rejoin if kicked", false, function(Value)
-                        print(Value)
-                        AutoRejoin = Value
-                        if AutoRejoin == false then print("Auto rejoin is inactive")
-                        else print("Auto rejoin is active") end
-                        while AutoRejoin == true do
-                    repeat wait() until game.CoreGui:FindFirstChild('RobloxPromptGui')
-                    
-                    local lp,po,ts = game:GetService('Players').LocalPlayer,game.CoreGui.RobloxPromptGui.promptOverlay,game:GetService('TeleportService')
-                    
-                    po.ChildAdded:connect(function(a)
-                        if a.Name == 'ErrorPrompt' then
-                            repeat
-                                ts:Teleport(game.PlaceId)
-                                wait(2)
-                            until false
-                        end
-                    end)
-                                wait()
-                             end
-                          end)
-                          local FirstToggle = FirstPage.AddToggle("Auto rebirth", false, function(Value)
-                            print(Value)
-                            AutoRebirth = Value
-                            if AutoRebirth == false then print("Auto rebirth is inactive")
-                            else print("Auto rebirth is active") end
-                            while AutoRebirth == true do
-                    game:GetService("ReplicatedStorage").Events.Rebirth:FireServer()
-                    wait()
-                            end
-                        end)
-                    
+    local FirstToggle = FirstPage.AddToggle("Auto buy all boosts", false, function(Value)
+        print(Value)
+        AutoBoosts = Value
+        if AutoBoosts == false then print("Auto buy all boosts is inactive")
+        else print("Auto buy all boosts is active") end
+        while AutoBoosts == true do
+            spawn(function()
+                while wait() do
+            local args = {[1] = "Lucky",[2] = 1}
+            game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
                 end
+                end)
+            
+                spawn(function()
+                while wait() do
+            local args = {[1] = "Lucky",[2] = 2}
+            game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
+                end
+            end)
+
+            spawn(function()
+                while wait() do
+            local args = {[1] = "boost1"}
+            game:GetService("ReplicatedStorage").Events.BuyEventShopItem:FireServer(unpack(args))
+            
+                end
+                end)
+
+                spawn(function()
+                    while wait() do
+            local args = {[1] = "Super Lucky",[2] = 1}
+            game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
+            end
+            end)
+
+            spawn(function()
+                while wait() do
+            local args = {[1] = "Super Lucky",[2] = 2}
+            game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
+            end
+            end)
+
+                spawn(function()
+                    while wait() do 
+            local args = {[1] = "boost2"}
+            game:GetService("ReplicatedStorage").Events.BuyEventShopItem:FireServer(unpack(args))
+                    end
                     end)
+
+                    spawn(function()
+                        while wait() do 
+            local args = {[1] = "Omega Lucky",[2] = 1}
+            game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
+
+                        end
+                        end)
+
+                        spawn(function()
+                            while wait() do
+            local args = {[1] = "Omega Lucky",[2] = 2}
+            game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
+            end
+            end)
+
+            spawn(function()
+                while wait() do 
+                    local args = {[1] = "Big Earner",[2] = 1}
+                    game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
+            end
+            end)
+
+            spawn(function()
+                while wait() do 
+            local args = {[1] = "Big Earner",[2] = 2}
+            game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
+            end
+            end)
+
+            spawn(function()
+                while wait() do 
+            local args = {[1] = "Super Rich",[2] = 1}
+            game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
+            end
+            end)
+wait()
+            spawn(function()
+                while wait() do 
+            local args = {[1] = "Super Rich",[2] = 2}
+            game:GetService("ReplicatedStorage").Events.BuyBoost:FireServer(unpack(args))
+            end
+            end)
+        end
+    end)
+
+
+
+    local FirstToggle = FirstPage.AddToggle("Auto use all coins multiplier boosts", false, function(Value)
+            spawn(function()
+                while wait() do 
+            local args = {[1] = "Big Earner",[2] = 3600}
+            game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
+                end
+                end)
+            
+                spawn(function()
+                    while wait() do 
+                local args = {[1] = "Big Earner",[2] = 7200}
+                game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
+                    end
+                    end)
+                end)
+                    spawn(function()
+                        while wait() do 
+                    local args = {[1] = "Super Rich",[2] = 3600}
+                    game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
+                        end
+                        end)
+wait()
+
+                        spawn(function()
+                            while wait() do 
+                        local args = {[1] = "Super Rich",[2] = 7200}
+                        game:GetService("ReplicatedStorage").Events.UseBoost:FireServer(unpack(args))
+                            end
+                            end)
+ local FirstToggle = FirstPage.AddToggle("Auto delete stone", false, function(Value)
+    print(Value)
+    Breakcontinuous = Value
+    if Breakcontinuous == false then print("Auto delete blocks is inactive")
+    else print("Auto delete blocks is active") end
+    while Breakcontinuous == true do
+         local args = {
+                [1] = {
+             [1] = "h_stone",[2] = "ice",[3] = "d_stone",[4] = "de_stone",[5] = "m_stone"
+                }
+            }
+            game:GetService("ReplicatedStorage").Events.MultiDeleteOres:FireServer(unpack(args))
+            wait()
+         end
+      end)
+local FirstButton = SecondPage.AddButton("Unlock All", function()
+    for key,value2 in pairs(zones) do
+        local args = {
+                [1] = value2
+             }
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+        wait(0.5)
+
+    end 
+end)
+local FirstButton = SecondPage.AddButton("Overworld", function()
+    do
+local args = {
+    [1] = "The Overworld"
+}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+
+local SecondButton = SecondPage.AddButton("Cyber Galaxy", function()
+    do
+        local args = {[1] = "Cyber Galaxy"}
+        game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local ThirdButton = SecondPage.AddButton("Summer Fair", function()
+    do
+local args = {[1] = "Summer Fair"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FourthButton = SecondPage.AddButton("Hidden Treasure", function()
+    do
+local args = {[1] = "Hidden Treasure"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FourthButton = SecondPage.AddButton("Frozen Depths", function()
+    do
+local args = {[1] = "Frozen Depths"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FourthButton = SecondPage.AddButton("Gloomy Basin", function()
+    do
+local args = {[1] = "Gloomy Basin"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FourthButton = SecondPage.AddButton("Molten Core", function()
+    do
+local args = {[1] = "Molten Core"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FourthButton = SecondPage.AddButton("The Underworld", function()
+    do
+local args = {[1] = "The Underworld"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FourthButton = SecondPage.AddButton("Crystal Cavern", function()
+    do
+local args = {[1] = "Crystal Cavern"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FourthButton = SecondPage.AddButton("Cyber Sewers", function()
+    do
+local args = {[1] = "Cyber Sewers"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FourthButton = SecondPage.AddButton("Cosmic Abyss", function()
+    do
+local args = {[1] = "Cosmic Abyss"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FourthButton = SecondPage.AddButton("Cyber Core", function()
+    do
+local args = {[1] = "Cyber Core"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FourthButton = SecondPage.AddButton("Glitched Chasm", function()
+    do
+local args = {[1] = "Glitched Chasm"}
+game:GetService("ReplicatedStorage").Events.Teleport:FireServer(unpack(args))
+end 
+end)
+local FirstButton = ThirdPage.AddButton("Server hop", function()
+    do
+        game:GetService("TeleportService"):Teleport(9551640993, game:GetService("Players").LocalPlayer)
+    end
+end)
+local FirstToggle = ThirdPage.AddToggle("Auto rejoin if kicked", false, function(Value)
+    print(Value)
+    AutoRejoin = Value
+    if AutoRejoin == false then print("Auto rejoin is inactive")
+    else print("Auto rejoin is active") end
+    while AutoRejoin == true do
+repeat wait() until game.CoreGui:FindFirstChild('RobloxPromptGui')
+
+local lp,po,ts = game:GetService('Players').LocalPlayer,game.CoreGui.RobloxPromptGui.promptOverlay,game:GetService('TeleportService')
+
+po.ChildAdded:connect(function(a)
+    if a.Name == 'ErrorPrompt' then
+        repeat
+            ts:Teleport(game.PlaceId)
+            wait(2)
+        until false
+    end
+end)
+            wait()
+         end
+      end)
+      local FirstToggle = FirstPage.AddToggle("Auto rebirth", false, function(Value)
+        print(Value)
+        AutoRebirth = Value
+        if AutoRebirth == false then print("Auto rebirth is inactive")
+        else print("Auto rebirth is active") end
+        while AutoRebirth == true do
+game:GetService("ReplicatedStorage").Events.Rebirth:FireServer()
+wait()
+        end
+    end)
